@@ -1,5 +1,9 @@
 
 
+function next(input: number): number {
+    return Math.floor(Math.random() * 1024*1024) ^ input;
+}
+
 /**
  * Dice
  * Purely exists to allow the cheating CPU to cheat.
@@ -8,7 +12,7 @@ export class Dice {
     #value: number
     constructor(seed: number | undefined = undefined) {
         if (seed === undefined) {
-            seed = Math.floor(Math.random() * 1024*1024)
+            seed = next(Math.floor(Math.random() * 1024*1024))
         }
         this.#value = seed
     }
@@ -21,8 +25,10 @@ export class Dice {
     roll(min: number, max: number) {
         let out = (this.#value % (max - min + 1)) + min
         let new_value = 0;
+        let tries = 0;
         do {
-            new_value = Math.floor(Math.random() * 1024*1024);
+            new_value = next(this.#value) + next(tries);
+            tries++;
         } while((this.#value % (max - min + 1)) + min == (new_value % (max - min + 1)) + min) // make sure if you roll the max-min again you get a different value
         this.#value = new_value;
         return out;
