@@ -2,3 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+.cards {
+  @apply flex flex-row justify-center;
+}
+
+.card {
+  @apply bg-base-200 p-2 m-2 rounded-lg flex flex-col min-w-40 min-h-80 border-base-300 border-2 justify-around transition-all duration-300;
+}
+
+.full-center {
+  @apply flex justify-center items-center w-[100vw] h-[75vh];
+}
+
+.card.card-active {
+  @apply border-green-500;
+}
+
+.dice {
+  @apply w-16 h-16 bg-white rounded-xl flex justify-center items-center text-2xl text-black;
+}
