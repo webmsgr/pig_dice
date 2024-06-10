@@ -1,7 +1,7 @@
 import { Dice } from "../dice";
 import { Player } from "../player";
 
-const names = ["Hacker"]
+const names = ["Hacker", "Never Loose Larry"]
 /**
  * An impossible bot
  * 
