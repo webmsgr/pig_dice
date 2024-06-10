@@ -56,7 +56,7 @@ document.getElementById("add_cpu")!.onclick = async () => {
 document.getElementById("play")!.onclick = async () => {
   try {
     let winner = await game.play();
-    document.getElementById("winner")!.textContent = winner;
+    document.getElementById("winner")!.textContent = `${winner} wins!`;
     win_modal.classList.add('modal-show');
     await new Promise((resolve) => {
       document.getElementById("restart")!.onclick = () => {
