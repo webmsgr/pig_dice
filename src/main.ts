@@ -1,6 +1,6 @@
 // gaming
 
-import {Dice, test as diceTest} from './dice'
+import {test as diceTest} from './dice'
 import { Game } from './game';
 import { Player } from './player';
 import { CheatingBot } from './player_types/cheating_computer';
