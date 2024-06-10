@@ -9,10 +9,13 @@ import { ImpossibleBot } from './player_types/extreme_cheating_computer';
 import { Human } from './player_types/human';
 import { NormalBot } from './player_types/normal_cpu';
 import { RandomBot } from './player_types/random_cpu';
-import { alert } from './util';
-
+import { alert, loadSound } from './util';
+import dice_sound_url from './sounds/220743__dermotte__dice_01.wav';
 // do a little self check
 diceTest();
+
+
+
 
 const human_name_box = document.getElementById("player_name") as HTMLInputElement;
 const win_modal = document.getElementById("win_modal") as HTMLElement;
@@ -31,7 +34,9 @@ cpu_types.forEach((type) => {
 })
 
 const game = new Game();
-
+loadSound(dice_sound_url).then((sound) => {
+  game.dice_sound = sound;
+})
 //game.add_player(new ExtremeCheatingBot());
 //await game.play();
 document.getElementById("add_human")!.onclick = async () => {

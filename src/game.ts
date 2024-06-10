@@ -11,6 +11,7 @@ export class Game {
     #players: Player[]
     #playerScores: number[]
     #current_player: number
+    dice_sound: HTMLAudioElement | null = null;
     constructor() {
         this.#players = []
         this.#playerScores = []
@@ -21,20 +22,34 @@ export class Game {
         document.getElementById(`player-card-${new_active}`)!.firstElementChild!.classList.add('card-active');
         this.#current_player = new_active;
     }
+    #rebuildCards() {
+        cards_element.innerHTML = "";
+        this.#players.forEach((player, i) => {
+            const card = this.#createElementForPlayer(player, i);
+            cards_element.appendChild(card);
+        })
+    }
     #createElementForPlayer(player: Player, id: number) {
         const card = player_card_template.content.cloneNode(true) as HTMLElement;
         card.querySelector('.player-name')!.textContent = player.name;
         card.querySelector('.player-type')!.textContent = player.type;
+        
         const outer_temp = document.createElement("div");
         outer_temp.id = `player-card-${id}`;
         outer_temp.appendChild(card);
+        outer_temp.querySelector('button')!.onclick = () => {
+            let index = this.#players.indexOf(player);
+            this.#players.splice(index, 1);
+            this.#playerScores.splice(index, 1);
+            cards_element.removeChild(document.getElementById(`player-card-${id}`)!);
+            this.#rebuildCards();
+        }
         return outer_temp;
     }
     add_player(player: Player) {
         this.#players.push(player)
         this.#playerScores.push(0)
-        const card = this.#createElementForPlayer(player, this.#players.length - 1)
-        cards_element.appendChild(card)
+        this.#rebuildCards();
     }
     async play(): Promise<string> {
         if (this.#players.length < 2) {
@@ -63,6 +78,10 @@ export class Game {
                     } while(roll.toString() == last_roll);
                     dice_element.textContent = roll.toString();
                   }, 50)
+                if (this.dice_sound) {
+                    this.dice_sound.fastSeek(0);
+                    this.dice_sound.play();
+                }
                 await wait(1000);
                 clearInterval(diceAnim);
                 dice_element.classList.remove('dice-rolling');

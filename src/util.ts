@@ -16,3 +16,14 @@ export function alert(data: string): Promise<void> {
         }
     })
 }
+
+
+export function loadSound(url: string) {
+    return new Promise<HTMLAudioElement>((resolve, reject) => {
+        const audio = new Audio(url);
+        audio.oncanplay = () => {
+            resolve(audio);
+        }
+        audio.onerror = reject;
+    })
+}
