@@ -55,8 +55,14 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@5
+
       - name: Build site
         run: pnpm build
+        env:
+          BASE_URL: ${{ steps.pages.outputs.base_path }}/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
