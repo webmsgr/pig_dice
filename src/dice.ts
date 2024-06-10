@@ -1,9 +1,12 @@
 
-
+/**
+ * Takes an input number and outputs a new number.
+ * @param input input number
+ * @returns a number based on the input
+ */
 function next(input: number): number {
-    return Math.floor(Math.random() * 1024*1024) ^ input;
+    return Math.floor(Math.random() * 1024 * 1024 ^ input);
 }
-
 /**
  * Dice
  * Purely exists to allow the cheating CPU to cheat.
@@ -24,14 +27,8 @@ export class Dice {
      */
     roll(min: number, max: number) {
         let out = (this.#value % (max - min + 1)) + min
-        let new_value = 0;
-        let tries = 0;
-        do {
-            new_value = next(this.#value) + next(tries);
-            tries++;
-        } while((this.#value % (max - min + 1)) + min == (new_value % (max - min + 1)) + min) // make sure if you roll the max-min again you get a different value
-        this.#value = new_value;
-        return out;
+        this.#value = next(this.#value)
+        return out
     }
     /**
      * Peeks ahead at the next value that will be rolled

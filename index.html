@@ -17,18 +17,64 @@
     <header class="m-auto w-fit text-center">
       <h1 class="text-3xl">Pig dice</h1>
     </header>
-    <main class="full-center text-center flex flex-col">
-      <div class="cards">
+    <main class="full-center text-center flex flex-col gap-4">
+      <div id="cards" class="cards">
         
       </div>
-      <div class="dice">
-        5
+      
+      <div class="show-playing">
+        <div class="flex flex-col gap-5 items-center justify-around">
+        <div class="dice" id="dice">
+          5
+        </div>
+        <div class="bg-base-200 p-2 m-2 rounded-lg flex flex-col border-base-300 border-2 justify-around transition-all duration-300 gap-4">
+          <p>Turn score: <span id="turn_score">0</span></p>
+          <div class="flex flex-row gap-4">
+            <button id="roll" class="btn btn-primary disabled:btn-disabled" disabled>Roll</button>
+            <button id="hold" class="btn btn-primary disabled:btn-disabled" disabled>Hold</button>
+        </div>
+        </div>
       </div>
-      <div id="roll_count"></div>
-      <div id="roll_avg"></div>
-      <div id="since_last"></div>
+      </div>
+      <div class="hide-playing">
+        <div class="bg-base-200 p-2 m-2 rounded-lg flex flex-row border-base-300 border-2 justify-around items-center transition-all duration-300 gap-4">
+          <div class="bg-base-300  p-2 m-2 rounded-lg flex flex-col border-base-300 border-2 justify-around transition-all duration-300 gap-4">
+            <h1 class="text-2xl">Human</h1>
+            <input id="player_name" type="text" class="input input-primary" placeholder="Enter your name" />
+            <button id="add_human" class="btn btn-primary">
+              Add
+            </button>
+          </div>
+            <div class="bg-base-300  p-2 m-2 rounded-lg flex flex-col border-base-300 border-2 justify-around transition-all duration-300 gap-4">
+              <h1 class="text-2xl">CPU</h1>
+              <select id="cpu_type" class="select select-bordered">
+              </select>
+            <button id="add_cpu" class="btn btn-primary">
+              Add
+            </button>
+            </div>
+          
+        </div>
+        <button id="play" class="btn btn-primary">
+          Play
+        </button>
+      </div>
       
     </main>
+    <div id="alert_modal" class="modal-outer">
+      <div class="modal-inner">
+        <h1 class="text-4xl">Alert</h1>
+        <p id="alert" class="text-2xl">content</p>
+        <button id="close_alert" class="btn btn-primary">Close</button>
+      </div>
+    </div>
+    <div id="win_modal" class="modal-outer">
+      <div class="modal-inner">
+        <h1 class="text-4xl">Game over</h1>
+        <p id="winner" class="text-2xl">Winner: <span id="winner"></span></p>
+        <button id="restart" class="btn btn-primary">Restart</button>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

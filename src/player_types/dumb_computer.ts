@@ -14,10 +14,9 @@ export class DumbComputerPlayer implements Player {
     }
     doTurn(turnScore: number, _score: number, _dice: Dice): Promise<boolean> {
         return new Promise((resolve) => {
-            // wait for a random amount of time between 1-5 seconds
             setTimeout(() => {
                 resolve(turnScore < 10); // very stupid
-            }, Math.floor(Math.random() * 4000) + 1000); // he needs to think very hard
+            }, Math.floor(Math.random() * 1000));
             
         })
     }

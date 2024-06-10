@@ -19,5 +19,39 @@
 }
 
 .dice {
-  @apply w-16 h-16 bg-white rounded-xl flex justify-center items-center text-2xl text-black;
+  @apply w-16 h-16 bg-white rounded-xl flex justify-center items-center text-2xl text-black border-2 border-green-500 transition-all duration-300;
+}
+
+.dice.dice-one {
+  @apply border-red-600;
+}
+
+.dice.dice-rolling {
+  @apply border-black animate-spin;
+}
+
+.playing .hide-playing {
+  @apply hidden;
+}
+.playing .show-playing {
+  display: unset;
+}
+.hide-playing {
+  display: unset;
+}
+.show-playing {
+  @apply hidden;
+}
+
+
+.modal-outer {
+  @apply z-10 absolute left-0 top-0 bg-gray-600 bg-opacity-50 w-screen h-screen justify-center items-center hidden;
+}
+
+.modal-outer.modal-show {
+  @apply flex;
+}
+
+.modal-inner {
+  @apply bg-base-200 p-4 rounded-lg flex gap-3 flex-col items-center justify-center;
 }

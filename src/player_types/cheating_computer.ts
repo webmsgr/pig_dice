@@ -1,7 +1,7 @@
 import { Dice } from "../dice";
 import { Player } from "../player";
 
-const names = ["xX_haxor_Xx"]
+const names = ["xX_haxor_Xx", "Psychic", "Stockfish"]
 /**
  * A cheating bot
  * 
@@ -19,7 +19,7 @@ export class CheatingBot implements Player {
             // wait for a random amount of time between 1-5 seconds
             setTimeout(() => {
                 resolve(dice.peek(1,6) != 1); // he is literally cheating
-            }, Math.floor(Math.random() * 4000) + 1000); // he needs to think very hard
+            }, Math.floor(Math.random() * 1000));
             
         })
     }
